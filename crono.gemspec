@@ -5,8 +5,8 @@ require_relative 'lib/crono/version'
 Gem::Specification.new do |s|
   s.name          = 'crono'
   s.version       = Crono::VERSION
-  s.authors       = ['Dzmitry Plashchynski']
-  s.email         = ['plashchynski@gmail.com']
+  s.authors       = ['Dzmitry Plashchynski', 'Saimon Lovell']
+  s.email         = %w[plashchynski@gmail.com saimonlovell@gmail.com]
 
   s.summary       = 'Job scheduler for Rails'
   s.description   = 'A time-based background job scheduler daemon (just like Cron) for Rails'
@@ -25,9 +25,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'timecop', '>= 0.7'
   s.add_development_dependency 'sqlite3'
   s.add_development_dependency 'byebug'
-  s.add_development_dependency 'sinatra'
-  s.add_development_dependency 'haml'
   s.add_development_dependency 'rack-test'
   s.add_development_dependency 'daemons'
-  s.add_development_dependency 'propshaft'
 end

@@ -6,7 +6,7 @@ module Crono
   class Job
     include Logging
 
-    attr_accessor :performer, :period, :job_args, :last_performed_at, :job_options,
+    attr_accessor :performer, :period, :job_args, :last_failed_error, :last_performed_at, :last_failed_at, :job_options,
                   :next_performed_at, :job_log, :job_logger, :healthy, :execution_interval
 
     def initialize(performer, period, job_args = nil, job_options = nil)
@@ -71,8 +71,13 @@ module Crono
       saved_log = model.reload.log || ''
       log_to_save = saved_log + job_log.string
       log_to_save = truncate_log(log_to_save)
-      model.update(last_performed_at: last_performed_at, log: log_to_save,
-                   healthy: healthy)
+      model.update(
+        last_failed_error: last_failed_error,
+        last_performed_at: last_performed_at,
+        last_failed_at: last_failed_at,
+        log: log_to_save,
+        healthy: healthy
+      )
     end
 
     def perform_job
@@ -92,6 +97,8 @@ module Crono
     def handle_job_fail(exception)
       finished_time_sec = format('%.2f', Time.zone.now - last_performed_at)
       self.healthy = false
+      self.last_failed_at = Time.zone.now
+      self.last_failed_error = exception.message
       log_error "Finished #{performer} in #{finished_time_sec} seconds"\
                 " with error: #{exception.message}"
       log_error exception.backtrace.join("\n")

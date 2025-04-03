@@ -1,3 +1,10 @@
+2.2.0
+-----------
+- Remove Web Components
+- Add last error time
+- Add last error message
+- Add json response from controller
+
 2.1.0
 -----------
 - Add Rails 7.2 support (thanks to @janko)

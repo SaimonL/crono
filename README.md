@@ -1,4 +1,4 @@
-Job scheduler for Rails
+Job scheduler for Rails Api
 ------------------------
 [![Gem Version](https://badge.fury.io/rb/crono.svg)](http://badge.fury.io/rb/crono)
 
@@ -7,9 +7,6 @@ Crono is a time-based background job scheduler daemon (just like Cron) for Ruby 
 ## The Purpose
 
 Currently, there is no such thing as Ruby Cron for Rails. Well, there's [Whenever](https://github.com/javan/whenever) but it works on top of Unix Cron, so you can't manage it from Ruby. Crono is pure Ruby. It doesn't use Unix Cron and other platform-dependent things. So you can use it on all platforms supported by Ruby. It persists job states to your database using Active Record. You have full control of jobs performing process. It's Ruby, so you can understand and modify it to fit your needs.
-
-![Web UI](https://github.com/plashchynski/crono/raw/main/examples/crono_web_ui.png)
-
 
 ## Installation
 
@@ -22,12 +19,16 @@ gem 'crono'
 Run the `bundle` command to install it.  
 After you install Crono, you can run the generator:
 
-    rails generate crono:install
+```shell
+rails generate crono:install
+```
 
 It will create a configuration file `config/cronotab.rb` and migration  
 Run the migration:
 
-    rake db:migrate
+```shell
+rake db:migrate
+```
 
 Now you are ready to move forward to create a job and schedule it.
 
@@ -175,24 +176,11 @@ gem 'daemons'
 ```
 
 Then:
-
-    bundle install; bundle exec crono start RAILS_ENV=development
-
-There are "start", "stop", and "restart" commands.
-
-## Web UI
-
-Crono can display the current state of Crono jobs.  
-
-Add the following to your `config/routes.rb`:
-
-```ruby
-Rails.application.routes.draw do
-    mount Crono::Engine, at: '/crono'
-    ...
+```shell
+bundle install; bundle exec crono start RAILS_ENV=development
 ```
 
-Access management and other questions described in the [wiki](https://github.com/plashchynski/crono/wiki/Web-UI).
+There are "start", "stop", and "restart" commands.
 
 ## Known issues
 
