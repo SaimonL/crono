@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.authors       = ['Dzmitry Plashchynski', 'Saimon Lovell']
   s.email         = %w[plashchynski@gmail.com saimonlovell@gmail.com]
 
-  s.summary       = 'Job scheduler for Rails'
-  s.description   = 'A time-based background job scheduler daemon (just like Cron) for Rails'
+  s.summary       = 'Job scheduler for Rails API'
+  s.description   = 'A time-based background job scheduler daemon (just like Cron) for Rails API'
   s.homepage      = 'https://github.com/plashchynski/crono'
   s.license       = 'Apache-2.0'
 
